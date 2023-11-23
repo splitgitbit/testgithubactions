@@ -1,0 +1,33 @@
+name: Print Variable or Secret
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment (test or prod)'
+        required: true
+        default: 'test'
+
+jobs:
+  print-variable-or-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set environment variable
+      run: echo "ENVIRONMENT=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+
+    - name: Print variable or secret
+      run: |
+        if [ "${{ env.ENVIRONMENT }}" == "test" ]; then
+          echo "Printing test variable"
+          echo "TestVariable: ${{ secrets.TEST_VARIABLE }}"
+        elif [ "${{ env.ENVIRONMENT }}" == "prod" ]; then
+          echo "Printing prod secret"
+          echo "ProdSecret: ${{ secrets.PROD_SECRET }}"
+        else
+          echo "Invalid environment selected"
+          exit 1
+        fi
