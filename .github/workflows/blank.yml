@@ -28,11 +28,11 @@ jobs:
 
     - name: Print variable or secret
       run: |
-        if [ "${{ env.ENVIRONMENT }}" == "test" ]; then
+        if [ "${{ env.ENVIRONMENT }}" == "Test" ]; then
           echo "Printing test variable"
           echo "TestVariable (secret): ${{ secrets.TESTSECRET }}"
           echo "TestVariable: ${{ vars.TEST_VARIABLE }}"
-        elif [ "${{ env.ENVIRONMENT }}" == "prod" ]; then
+        elif [ "${{ env.ENVIRONMENT }}" == "Prod" ]; then
           echo "Printing prod secret"
           echo "ProdSecret: ${{ secrets.TESTSECRET }}"
           echo "ProdVariable: ${{ vars.TEST_VARIABLE }}"
