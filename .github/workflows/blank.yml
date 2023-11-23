@@ -31,3 +31,13 @@ jobs:
           echo "Invalid environment selected"
           exit 1
         fi
+  
+  print-variables-and-secrets:
+    runs-on: windows-2022
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: print variables
+      run: Write-Host "${{ env.TEST_VARIABLE }}"
