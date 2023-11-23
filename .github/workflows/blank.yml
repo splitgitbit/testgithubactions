@@ -1,12 +1,19 @@
 name: Print Variable or Secret
 
+#on:
+#  workflow_dispatch:
+#    inputs:
+#      environment:
+#        description: 'Select environment (test or prod)'
+#        required: true
+#        default: 'test'
 on:
-  workflow_dispatch:
+ workflow_dispatch:
     inputs:
       environment:
-        description: 'Select environment (test or prod)'
+        description: 'Target environment'
         required: true
-        default: 'test'
+        type: environment
 
 jobs:
   print-variable-or-secret:
