@@ -30,10 +30,12 @@ jobs:
       run: |
         if [ "${{ env.ENVIRONMENT }}" == "test" ]; then
           echo "Printing test variable"
-          echo "TestVariable: ${{ secrets.TEST_VARIABLE }}"
+          echo "TestVariable (secret): ${{ secrets.TESTSECRET }}"
+          echo "TestVariable: ${{ var.TEST_VARIABLE }}"
         elif [ "${{ env.ENVIRONMENT }}" == "prod" ]; then
           echo "Printing prod secret"
-          echo "ProdSecret: ${{ secrets.PROD_SECRET }}"
+          echo "ProdSecret: ${{ secrets.TESTSECRET }}"
+          echo "ProdVariable: ${{ var.TEST_VARIABLE }}"
         else
           echo "Invalid environment selected"
           exit 1
